@@ -97,3 +97,46 @@ for (let i=1;i<=n;i++){
     fac*=i;
 }
 console.log(fac);
+
+// Практика Функции
+//1
+function add(a:number,b:number):number{
+    return a + b;
+}
+console.log(add(3,5)); 
+console.log(add(24,35));
+console.log(add(-44,4)); 
+
+//2
+function greet(name: string = "Имя") {
+    console.log("Здраствуйте, " + name + "!");
+}
+greet("Красавчик");
+
+//3
+function isEven(num:number):boolean{
+    return num%2===0;
+}
+console.log(isEven(6));
+console.log(isEven(8));
+
+//4
+function sq(num:number):number{
+    return num*num;
+}
+console.log(sq(5));
+console.log(sq(3));
+
+//5
+function sravn(a: number, b: number): string {
+    if (a > b) {
+        return "первое число больше";
+    }
+    if (b > a) {
+        return "второе число больше";
+    }
+    return "равны";
+}
+console.log(sravn(15, 25));
+console.log(sravn(2, 8));
+console.log(sravn(3, 4));
