@@ -1,9 +1,12 @@
 console.log(1)
 
+//practic 1
+//1
 let string: string ='Privet';
 let nomer: number=69; 
 let shtoto: boolean=false;
 
+//2
 let variable: any = 5;
 variable = "текст";
 variable = true;
@@ -13,11 +16,14 @@ function show(): void{
 }
 show();
 
+//practic 2
 let count: number=0;
 console.log(count);
 count=99;
 console.log(count);
 
+//practic 3
+//1
 let a: number = 25;
 let b: number = 4;
 let sum: number = a + b;
@@ -28,6 +34,7 @@ if (sum%2!=0) {
     console.log("Число " + sum + " нечётное");
 }
 
+//2
 let sc: number=0;
 sc+=1;
 sc+=1;
@@ -35,13 +42,16 @@ sc+=1;
 sc-=1;
 sc-=1;
 console.log(sc);
-// C)
+
+//3
 let wallet: number=1000;
 wallet+=200;
 wallet*=0.7;
 wallet/=2;
 console.log(wallet);
 
+//practic 4
+//1
 const speed: number=80;
 const isRoadClear: boolean=false;
 if (speed<=60||!isRoadClear){
@@ -51,6 +61,7 @@ if (speed>=80 && isRoadClear) {
 console.log('Опасно');
 }
 
+//2
 let hk: boolean = true;
 let knowsPassword: boolean = false;
 if (hk&&knowsPassword) {
@@ -63,12 +74,15 @@ if (!hk&&!knowsPassword){
     console.log("Доступ запрещён");
 }
 
+//practic 5
+//1
 let sum1=0;
 for (let i=1;i<=10;i++){
     sum1+=i;
 }
 console.log(sum1);
 
+//2
 let A=5;
 let res=1;
 for (let i=1;i<=10;i++){
@@ -76,9 +90,53 @@ for (let i=1;i<=10;i++){
     console.log(A+"×"+i+"="+res);
 }
 
+//3
 let n=6;
 let fac=1;
 for (let i=1;i<=n;i++){
     fac*=i;
 }
 console.log(fac);
+
+// Практика Функции
+//1
+function add(a:number,b:number):number{
+    return a + b;
+}
+console.log(add(12, 2));
+console.log(add(34, 35));
+console.log(add(-34, 37));
+
+//2
+function greet(name: string = "name") {
+    console.log("еу, " + name + "!");
+}
+greet("...");
+
+//3
+function isEven(num:number):boolean{
+    return num%2===0;
+}
+console.log(isEven(7));
+console.log(isEven(8));
+
+//4
+function sq(num:number):number{
+    return num*num;
+}
+console.log(sq(5));
+console.log(sq(10));
+
+//5
+function sravn(a: number, b: number): string {
+    if (a > b) {
+        return "первое число больше";
+    }
+    if (b > a) {
+        return "второе число больше";
+    }
+    return "равны";
+}
+console.log(sravn(13, 28));
+console.log(sravn(4, 15));
+console.log(sravn(33, 4));
