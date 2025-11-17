@@ -1,10 +1,9 @@
 console.log(1);
-//practic 1
-//1
+
 var string = 'Privet';
 var nomer = 69;
 var shtoto = false;
-//2
+
 var variable = 5;
 variable = "текст";
 variable = true;
@@ -13,13 +12,12 @@ function show() {
     console.log("...");
 }
 show();
-//practic 2
+
 var count = 0;
 console.log(count);
 count = 99;
 console.log(count);
-//practic 3
-//1
+
 var a = 25;
 var b = 4;
 var sum = a + b;
@@ -29,7 +27,7 @@ if (sum % 2 === 0) {
 if (sum % 2 != 0) {
     console.log("Число " + sum + " нечётное");
 }
-//2
+
 var sc = 0;
 sc += 1;
 sc += 1;
@@ -37,14 +35,13 @@ sc += 1;
 sc -= 1;
 sc -= 1;
 console.log(sc);
-//3
+
 var wallet = 1000;
 wallet += 200;
 wallet *= 0.7;
 wallet /= 2;
 console.log(wallet);
-//practic 4
-//1
+
 var speed = 80;
 var isRoadClear = false;
 if (speed <= 60 || !isRoadClear) {
@@ -53,7 +50,7 @@ if (speed <= 60 || !isRoadClear) {
 if (speed >= 80 && isRoadClear) {
     console.log('Опасно');
 }
-//2
+
 var hk = true;
 var knowsPassword = false;
 if (hk && knowsPassword) {
@@ -65,27 +62,27 @@ if ((hk && !knowsPassword) || (!hk && knowsPassword)) {
 if (!hk && !knowsPassword) {
     console.log("Доступ запрещён");
 }
-//practic 5
-//1
+
 var sum1 = 0;
 for (var i = 1; i <= 10; i++) {
     sum1 += i;
 }
 console.log(sum1);
-//2
+
 var A = 5;
 var res = 1;
 for (var i = 1; i <= 10; i++) {
     res = A * i;
     console.log(A + "×" + i + "=" + res);
 }
-//3
+
 var n = 6;
 var fac = 1;
 for (var i = 1; i <= n; i++) {
     fac *= i;
 }
 console.log(fac);
+
 //practic functions
 //1
 function add(a, b) {
@@ -125,3 +122,15 @@ function sravn(a, b) {
 console.log(sravn(13, 28));
 console.log(sravn(4, 15));
 console.log(sravn(33, 4));
+
+//д/з
+var Age = 17;
+if (Age < 18) {
+    console.log('нет доступа!');
+}
+if (Age >= 18) {
+    console.log('доступ есть!');
+    for (var i = 1; i <= 10; i++) {
+        console.log(Age + ' x ' + i, '= ' + Age * i);
+    }
+}
