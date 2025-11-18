@@ -134,3 +134,28 @@ if (Age >= 18) {
         console.log(Age + ' x ' + i, '= ' + Age * i);
     }
 }
+//д/з 2
+function calculator(a, b, c) {
+    if (c === '+') {
+        return a + b;
+    }
+    if (c === '-') {
+        return a - b;
+    }
+    if (c === '*') {
+        return a * b;
+    }
+    if (c === '/') {
+        return a / b;
+    }
+    return 0;
+}
+console.log('12 + 21 = ',
+    calculator(12, 21, '+'));
+console.log('3 - 23 = ',
+    calculator(3, 23, '-'));
+console.log('4 × 11 = ',
+    calculator(4, 11, '*'));
+console.log('45 ÷ 23 = ',
+    calculator(45, 23, '/'));
+//
