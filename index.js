@@ -137,3 +137,25 @@ if (Age1 >= 18) {
         console.log(Age1 + ' x ' + i, '= ' + Age1 * i);
     }
 }
+/////////////////////////////////////////////////////////////////
+function calc(a, b, operator) {
+    if (operator === '+') {
+        return a + b;
+    }
+    if (operator === '-') {
+        return a - b;
+    }
+    if (operator === '*') {
+        return a * b;
+    }
+    if (operator === '/') {
+        return a / b;
+    }
+    return 0;
+}
+
+console.log('50 + 35 = ', calc(50, 35, '+'));
+console.log('57 - 24 = ', calc(57, 24, '-'));
+console.log('146 × 456 = ', calc(146, 456, '*'));
+console.log('111 ÷ 36 = ', calc(111, 36, '/'));
+/////////////////////////////////////////////////////////////////
