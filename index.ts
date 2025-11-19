@@ -162,3 +162,97 @@ console.log('4 × 11 = ',
 console.log('45 ÷ 23 = ',
     calculator(45, 23, '/'));
 //
+//1
+const names: string[] = ['ivan', 'petr', 'sidor'];
+const ages: number[] = [25, 30, 35];
+const flags: boolean[] = [false, true, false];
+
+//2
+const vegetables: string[] = ['помидор', 'огурец', 'морковь'];
+console.log(vegetables[0]);
+console.log(vegetables[2]);
+
+//3
+const movie = {
+    title: 'альфа',
+    director: 'Иванов А В',
+    year: 1995
+};
+console.log('Фильм:', movie);
+console.log('Название:', movie.title);
+console.log('Режиссер:', movie.director);
+console.log('Год:', movie.year);
+
+//4
+type Client = {
+    name: string;
+    age: number;
+}
+const client: Client = {
+    name: 'Максим',
+    age: 28
+}
+console.log(client);
+
+//5
+interface Employee {
+    name: string;
+    age: number;
+}
+const employees: Employee[] = [
+    { name: 'анна', age: 25 },
+    { name: 'михаил', age: 30 },
+    { name: 'елена', age: 28 },
+];
+for (let i = 0; i < employees.length; i++) {
+    console.log('Имя: ' + employees[i].name + ', Возраст: ' + employees[i].age);
+}
+
+//6
+const digits = [5, 6, 7];
+digits.push(8);
+console.log(digits);
+
+//7
+const values = [2, 3, 4, 5];
+const multiplied = values.map((val) => val * 5);
+console.log(multiplied);
+
+//8
+const userAges = [15, 25, 17, 40, 16];
+const mature = userAges.filter((age) => age >= 18);
+console.log(mature);
+
+//9
+interface Customer {
+    name: string;
+    age: number;
+}
+const customers: Customer[] = [
+    { name: 'анна', age: 25 },
+    { name: 'михаил', age: 30 },
+    { name: 'елена', age: 28 },
+];
+const searchName = 'михаил';
+const foundUser = customers.find((u) => u.name === searchName);
+if (foundUser) {
+    console.log('Найден: ' + foundUser.name + ', ' + foundUser.age + ' лет');
+}
+if (!foundUser) {
+    console.log('Пользователь не найден');
+}
+
+//10
+const mixedNumbers = [5, -3, 15, 0, 8, -1];
+const positiveDoubled = mixedNumbers.filter((num) => num > 0).map((num) => num * 3);
+console.log(positiveDoubled);
+
+//11
+const unsorted = [45, 8, 12, 3];
+const defaultSort = [...unsorted].sort();
+console.log('По умолчанию:', defaultSort);
+const ascending = [...unsorted].sort((a, b) => a - b);
+console.log('Возрастание:', ascending);
+const descending = [...unsorted].sort((a, b) => b - a);
+console.log('Убывание:', descending);
+//
