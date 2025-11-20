@@ -242,7 +242,7 @@ const chavov:chavo1[] = [
     { name: 'name2', age: 22 },
     { name: 'name3', age: 32 },
 ]
-const name2 = 'Иван'
+const name2 = 'name3'
 const user = chavov.find((u)=>u.name===name2)
 if (user){
     console.log('Найден: '+user.name+', '+user.age+' лет')
@@ -262,4 +262,41 @@ const asc = [...sort1].sort((a,b)=>a-b)
 console.log('Возрастание:',asc)
 const des = [...sort1].sort((a,b)=>b-a)
 console.log('Убывание:',des)
+/////////////////////////////////////////////////////////////////
+//1
+type Product = {
+    name: string;
+    price: number;
+    inStock: boolean;
+};
+
+//2
+const products = [
+    { name: 'Ноутбук', price: 50000, inStock: true },
+    { name: 'Мышь', price: 1500, inStock: false },
+    { name: 'Клавиатура', price: 3000, inStock: true },
+    { name: 'Монитор', price: 20000, inStock: true },
+    { name: 'Наушники', price: 5000, inStock: false }
+];
+
+const availableProducts = products.filter(product => product.inStock);
+console.log('Товары в наличии:');
+availableProducts.forEach(product => {
+    console.log(`- ${product.name}: ${product.price} руб`);
+});
+
+const availablePrices = availableProducts.map(product => product.price);
+console.log('Цены товаров в наличии:', availablePrices.join(', '));
+
+let totalSum = 0;
+for (let i = 0; i < availableProducts.length; i++) {
+    totalSum += availableProducts[i].price;
+}
+console.log(`Общая сумма товаров в наличии: ${totalSum} руб`);
+
+const sortedAvailableProducts = [...availableProducts].sort((a, b) => a.price - b.price);
+console.log('Отсортированные товары в наличии (от дешёвых к дорогим):');
+sortedAvailableProducts.forEach(product => {
+    console.log(`- ${product.name}: ${product.price} руб`);
+});
 /////////////////////////////////////////////////////////////////
