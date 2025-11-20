@@ -241,3 +241,34 @@ console.log('Возрастание:', ascending);
 const descending = [...unsorted].sort((a, b) => b - a);
 console.log('Убывание:', descending);
 //
+//
+//1
+const productList = [
+    { name: 'Ноутбук', price: 50000, inStock: true },
+    { name: 'Мышь', price: 1500, inStock: false },
+    { name: 'Клавиатура', price: 3000, inStock: true },
+    { name: 'Монитор', price: 20000, inStock: true },
+    { name: 'Наушники', price: 5000, inStock: false }
+];
+
+const availableItems = productList.filter(product => product.inStock);
+console.log('Товары в наличии:');
+availableItems.forEach(product => {
+    console.log(`- ${product.name}: ${product.price} руб.`);
+});
+
+const prices = availableItems.map(product => product.price);
+console.log('Цены товаров:', prices.join(', '));
+
+let total = 0;
+for (let i = 0; i < availableItems.length; i++) {
+    total += availableItems[i].price;
+}
+console.log(`Общая стоимость: ${total} руб.`);
+
+const byPrice = [...availableItems].sort((first, second) => first.price - second.price);
+console.log('Сортировка по цене:');
+byPrice.forEach(product => {
+    console.log(`- ${product.name}: ${product.price} руб.`);
+});
+//
