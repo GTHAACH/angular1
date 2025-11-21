@@ -293,3 +293,109 @@ console.log('Сортировка по цене:');
 byPrice.forEach(product => {
     console.log(`- ${product.name}: ${product.price} руб.`);
 });
+//
+//
+type BlogPost = {
+    userId: number;
+    id: number;
+    title: string;
+    body: string;
+};
+
+type SiteUser = {
+    id: number;
+    name: string;
+    username: string;
+    email: string;
+};
+
+async function fetchBlogPosts(): Promise<BlogPost[]> {
+    try {
+        const apiResponse = await fetch('https://jsonplaceholder.typicode.com/posts');
+        if (!apiResponse.ok) {
+            throw new Error(`Ошибка API: ${apiResponse.status}`);
+        }
+        const publications: BlogPost[] = await apiResponse.json();
+        return publications;
+    } catch (err) {
+        console.error('Не удалось загрузить публикации:', err);
+        return [];
+    }
+}
+
+async function getPublicationById(publicationId: number): Promise<BlogPost | null> {
+    try {
+        const apiResponse = await fetch(`https://jsonplaceholder.typicode.com/posts/${publicationId}`);
+        if (!apiResponse.ok) {
+            throw new Error(`Ошибка API: ${apiResponse.status}`);
+        }
+        const publication: BlogPost = await apiResponse.json();
+        return publication;
+    } catch (err) {
+        console.error('Ошибка получения публикации:', err);
+        return null;
+    }
+}
+
+async function fetchSiteUsers(): Promise<SiteUser[]> {
+    try {
+        const apiResponse = await fetch('https://jsonplaceholder.typicode.com/users');
+        if (!apiResponse.ok) {
+            throw new Error(`Ошибка API: ${apiResponse.status}`);
+        }
+        const userList: SiteUser[] = await apiResponse.json();
+        return userList;
+    } catch (err) {
+        console.error('Не удалось загрузить пользователей:', err);
+        return [];
+    }
+}
+
+async function executeProgram() {
+    console.log('>>> ЗАГРУЗКА ПУБЛИКАЦИЙ');
+    const publications = await fetchBlogPosts();
+    
+    if (publications.length > 0) {
+        const initialPublication = publications[0];
+        console.log('Первая публикация:');
+        console.log('Идентификатор:', initialPublication.id);
+        console.log('Название:', initialPublication.title);
+        console.log('Содержание:', initialPublication.body);
+        console.log('---');
+    }
+
+    console.log('>>> ПОЛУЧЕНИЕ ПУБЛИКАЦИИ ПО ИДЕНТИФИКАТОРУ');
+    const specificPublication = await getPublicationById(1);
+    if (specificPublication) {
+        console.log('Публикация #1:', specificPublication.title);
+    }
+    console.log('---');
+
+    console.log('>>> ПОЛЬЗОВАТЕЛИ С ДЛИННЫМИ ИМЕНАМИ');
+    const userList = await fetchSiteUsers();
+    const filteredUsers = userList.filter(user => user.name.length > 10);
+    filteredUsers.forEach(user => {
+        console.log('Пользователь:', user.name);
+    });
+    console.log('---');
+
+    console.log('>>> ТЕКСТЫ ПУБЛИКАЦИЙ');
+    const allPublications = await fetchBlogPosts();
+    const publicationTexts = allPublications.map(publication => publication.body);
+    console.log('Все тексты:', publicationTexts);
+    console.log('---');
+
+    console.log('>>> ПОИСК КОНКРЕТНОЙ ПУБЛИКАЦИИ');
+    const searchedPublication = allPublications.find(publication => publication.title === "qui est esse");
+    if (searchedPublication) {
+        console.log('Результат поиска:');
+        console.log('ID:', searchedPublication.id);
+        console.log('Заголовок:', searchedPublication.title);
+        console.log('Текст:', searchedPublication.body);
+    } else {
+        console.log('Публикация не найдена в базе');
+    }
+}
+
+executeProgram();
+//

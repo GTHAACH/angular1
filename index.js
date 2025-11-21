@@ -272,3 +272,94 @@ byPrice.forEach(product => {
     console.log(`- ${product.name}: ${product.price} руб.`);
 });
 //
+//
+async function obtainBlogEntries() {
+    try {
+        const serverResponse = await fetch('https://jsonplaceholder.typicode.com/posts');
+        if (!serverResponse.ok) {
+            throw new Error(`Проблема с соединением: ${serverResponse.status}`);
+        }
+        const entries = await serverResponse.json();
+        return entries;
+    } catch (error) {
+        console.error('Сбой при получении записей:', error);
+        return [];
+    }
+}
+
+async function obtainEntryById(entryNumber) {
+    try {
+        const serverResponse = await fetch(`https://jsonplaceholder.typicode.com/posts/${entryNumber}`);
+        if (!serverResponse.ok) {
+            throw new Error(`Проблема с соединением: ${serverResponse.status}`);
+        }
+        const entry = await serverResponse.json();
+        return entry;
+    } catch (error) {
+        console.error('Ошибка получения записи:', error);
+        return null;
+    }
+}
+
+async function obtainCommunityMembers() {
+    try {
+        const serverResponse = await fetch('https://jsonplaceholder.typicode.com/users');
+        if (!serverResponse.ok) {
+            throw new Error(`Проблема с соединением: ${serverResponse.status}`);
+        }
+        const members = await serverResponse.json();
+        return members;
+    } catch (error) {
+        console.error('Не удалось загрузить участников:', error);
+        return [];
+    }
+}
+
+async function runApplication() {
+    console.log('>>>>> ЗАПИСИ БЛОГА');
+    const blogEntries = await obtainBlogEntries();
+    
+    if (blogEntries.length > 0) {
+        const firstEntry = blogEntries[0];
+        console.log('Начальная запись:');
+        console.log('Номер:', firstEntry.id);
+        console.log('Заголовок:', firstEntry.title);
+        console.log('Текст записи:', firstEntry.body);
+        console.log('---');
+    }
+
+    console.log('>>>>> ЗАПРОС ЗАПИСИ ПО НОМЕРУ');
+    const entryById = await obtainEntryById(1);
+    if (entryById) {
+        console.log('Запись номер 1:', entryById.title);
+    }
+    console.log('---');
+
+    console.log('>>>>> УЧАСТНИКИ С ДЛИННЫМИ ИМЕНАМИ');
+    const communityMembers = await obtainCommunityMembers();
+    const membersWithLongNames = communityMembers.filter(member => member.name.length > 10);
+    membersWithLongNames.forEach(member => {
+        console.log('Участник:', member.name);
+    });
+    console.log('---');
+
+    console.log('>>>>> СОДЕРЖАНИЕ ЗАПИСЕЙ');
+    const allEntries = await obtainBlogEntries();
+    const entryContents = allEntries.map(entry => entry.body);
+    console.log('Содержание записей:', entryContents);
+    console.log('---');
+
+    console.log('>>>>> ПОИСК ЗАПИСИ ПО ЗАГОЛОВКУ');
+    const foundEntry = allEntries.find(entry => entry.title === "qui est esse");
+    if (foundEntry) {
+        console.log('Найдена запись:');
+        console.log('Номер:', foundEntry.id);
+        console.log('Заголовок:', foundEntry.title);
+        console.log('Содержание:', foundEntry.body);
+    } else {
+        console.log('Запись отсутствует в каталоге');
+    }
+}
+
+runApplication();
+//
