@@ -399,3 +399,45 @@ async function executeProgram() {
 
 executeProgram();
 //
+type BlogEntry = {
+    authorId: number;
+    entryId: number;
+    heading: string;
+    content: string;
+};
+
+async function fetchBlogEntries(): Promise<BlogEntry[]> {
+    try {
+        const apiResponse = await fetch('https://jsonplaceholder.typicode.com/posts');
+        const entries: BlogEntry[] = await apiResponse.json();
+        return entries;
+    } catch (err) {
+        console.error('Failed to retrieve blog entries:', err);
+        return [];
+    }
+}
+
+async function execute() {
+    const blogEntries = await fetchBlogEntries();
+
+    const authorIdentifiers = blogEntries.map(entry => entry.authorId);
+    
+    console.log('Author identifiers found in blog entries:');
+    console.log(authorIdentifiers);
+
+    const distinctAuthors = [...new Set(authorIdentifiers)];
+    console.log('Distinct author identifiers:');
+    console.log(distinctAuthors.sort((a, b) => a - b));
+
+    console.log('Detailed author list:');
+    authorIdentifiers.forEach((authorId, position) => {
+        console.log(`Entry ${position + 1} → Author: ${authorId}`);
+    });
+
+    console.log(`Statistics:
+    Total entries: ${blogEntries.length}
+    Unique authors: ${distinctAuthors.length}
+    Author distribution: ${distinctAuthors.map(id => `${id}(${authorIdentifiers.filter(aid => aid === id).length})`).join(', ')}`);
+}
+execute();
+//

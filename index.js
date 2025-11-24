@@ -363,3 +363,40 @@ async function runApplication() {
 
 runApplication();
 //
+async function getBlogPosts() {
+    try {
+        const serverResponse = await fetch('https://jsonplaceholder.typicode.com/posts');
+        const postsData = await serverResponse.json();
+        return postsData;
+    } catch (error) {
+        console.error('Problem fetching posts data:', error);
+        return [];
+    }
+}
+
+async function run() {
+    const allPosts = await getBlogPosts();
+
+    const userIdentifiers = allPosts.map(post => post.userId);
+    
+    console.log('User IDs from all posts:');
+    console.log(userIdentifiers);
+
+    const uniqueUsers = Array.from(new Set(userIdentifiers));
+    console.log('Unique user IDs:');
+    console.log(uniqueUsers);
+
+    console.log('User ID for each post:');
+    userIdentifiers.forEach((userId, index) => {
+        console.log(`Post ${index + 1} belongs to user ${userId}`);
+    });
+
+    console.log(`Summary:
+    Posts processed: ${allPosts.length}
+    Different users: ${uniqueUsers.length}
+    Most active user: ${uniqueUsers.reduce((a, b) => 
+        userIdentifiers.filter(id => id === a).length > userIdentifiers.filter(id => id === b).length ? a : b
+    )}`);
+}
+run();
+//
