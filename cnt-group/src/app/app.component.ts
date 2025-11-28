@@ -7,4 +7,10 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title: string = 'Hello, Angular';
+
+  operation: number = (23 * 2) * 3 - 34 / 12;
 }
+
+
+
+
